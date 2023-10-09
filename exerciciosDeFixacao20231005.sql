@@ -60,3 +60,27 @@ BEGIN
 END //
 
 DELIMITER ;
+
+Função para Atualizar Resumos de Livros:
+
+DELIMITER //
+
+CREATE FUNCTION atualizar_resumos()
+BEGIN
+    DECLARE done INT DEFAULT 0;
+    DECLARE livro_id INT;
+    DECLARE cur CURSOR FOR SELECT id FROM Livro;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+
+    WHILE done = 0 DO
+        FETCH cur INTO livro_id;
+        UPDATE Livro SET resumo = CONCAT(resumo, ' Este é um excelente livro!') WHERE id = livro_id;
+    END WHILE;
+
+    CLOSE cur;
+END //
+
+DELIMITER ;
