@@ -108,3 +108,22 @@ BEGIN
 END //
 
 DELIMITER ;
+
+Função para Listar Autores sem Livros Publicados:
+
+DELIMITER //
+
+CREATE FUNCTION autores_sem_livros() RETURNS TEXT
+BEGIN
+    DECLARE lista TEXT;
+    SET lista = '';
+
+    SELECT GROUP_CONCAT(CONCAT(primeiro_nome, ' ', ultimo_nome) SEPARATOR ', ')
+    INTO lista
+    FROM Autor
+    WHERE id NOT IN (SELECT DISTINCT id_autor FROM Livro_Autor);
+
+    RETURN lista;
+END //
+
+DELIMITER ;
