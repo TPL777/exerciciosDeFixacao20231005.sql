@@ -84,3 +84,27 @@ BEGIN
 END //
 
 DELIMITER ;
+
+Função para Obter a Média de Livros por Editora:
+
+DELIMITER //
+
+CREATE FUNCTION media_livros_por_editora() RETURNS DECIMAL(10,2)
+BEGIN
+    DECLARE total_editoras INT;
+    DECLARE total_livros INT;
+    DECLARE media DECIMAL(10,2);
+
+    SELECT COUNT(*) INTO total_editoras FROM Editora;
+    SELECT COUNT(*) INTO total_livros FROM Livro;
+
+    IF total_editoras > 0 THEN
+        SET media = total_livros / total_editoras;
+    ELSE
+        SET media = 0;
+    END IF;
+
+    RETURN media;
+END //
+
+DELIMITER ;
