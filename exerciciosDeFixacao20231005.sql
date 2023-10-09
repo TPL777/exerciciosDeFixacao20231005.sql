@@ -127,3 +127,27 @@ BEGIN
 END //
 
 DELIMITER ;
+
+ Pode-se chamar essas funções conforme necessário para obter os resultados desejados
+EXEMPLO:
+
+Para contar os livros de um gênero específico:
+   
+SELECT total_livros_por_genero('Romance');
+
+Para listar os livros de um autor específico:
+
+SELECT listar_livros_por_autor('João', 'Silva');
+
+Para atualizar os resumos de todos os livros:
+
+CALL atualizar_resumos();
+
+Para obter a média de livros por editora:
+
+SELECT media_livros_por_editora();
+
+Para listar autores sem livros publicados:
+
+SELECT autores_sem_livros();
+
